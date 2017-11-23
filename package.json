@@ -1,0 +1,25 @@
+{
+  "name": "autotranslate",
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "bin": {
+    "autoTranslate": "./bin/autoTranslate.js"
+  },
+  "author": "eJay",
+  "license": "MIT",
+  "repository": {
+    "type" : "git",
+    "url" : "https://github.com/eJayYoung/autoTranslate.git"
+  },
+  "dependencies": {
+    "ast-types": "^0.10.1",
+    "babylon": "^6.18.0",
+    "commander": "^2.11.0",
+    "glob": "^7.1.2",
+    "node-xlsx": "^0.11.0"
+  }
+}
