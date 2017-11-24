@@ -3,8 +3,12 @@
 a tools for nowa Project i18n automatic
 
 ## Install
-local install
 
+```
+npm install autoTranslate --save
+```
+
+local install
 ```
 git clone https://github.com/eJayYoung/autoTranslate.git
 cd autoTranslate
