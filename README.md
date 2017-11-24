@@ -5,7 +5,7 @@ a tools for nowa Project i18n automatic
 ## Install
 
 ```
-npm install autoTranslate --save
+npm install autotranslate -g
 ```
 
 local install
