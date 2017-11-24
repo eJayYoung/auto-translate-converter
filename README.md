@@ -3,9 +3,15 @@
 a tools for nowa Project i18n automatic
 
 ## Install
+local install
+
 ```
-$ npm install autoTranslate --save
+git clone https://github.com/eJayYoung/autoTranslate.git
+cd autoTranslate
+npm link
 ```
+
+then you can use command `autoTranslate` global.
 
 ## Usage
 
