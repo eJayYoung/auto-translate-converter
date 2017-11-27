@@ -20,10 +20,17 @@ const utils = {
    * 获取要替换的文件路径
    */
   getFiles() {
+    const filePath = config.filePath
+    ? 
+      utils.isFolder(config.filePath)
+      ? `${utils.p(config.filePath)}/**/*.js`
+      : utils.p(config.filePath)
+    : 
+      `${utils.p(config.root)}/**/*.js`;
     const ignorePath = config.ignore.map(n => {
       return `${utils.p(config.root)}/${n}/**/*.js`;
     });
-    return glob.sync(`${utils.p(config.root)}/**/*.js`, {
+    return glob.sync(filePath, {
       ignore: ignorePath
     }).map(v => v.substring(process.cwd().length));
   },
@@ -46,6 +53,7 @@ const utils = {
   },
   /**
    * 遍历AST，正则匹配出中文
+   * @param {Object} ast
    */
   matchChnFromAST(ast) {
     let result = [];

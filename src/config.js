@@ -2,12 +2,14 @@
 
 const fs = require('fs');
 
-// config
+// default config
 const DEFAULT_CONFIG = {
   root: './src',
   ignore: ['app', 'i18n', 'images', 'lib', 'util'],
+  filePath: process.argv[3] && `./${process.argv[3]}`,
   prefix: process.cwd().split('/').pop(),
   unique: true,
+  uuid: true,
 };
 
 const config = fs.existsSync(`${process.cwd()}/autoTranslate.config.js`)

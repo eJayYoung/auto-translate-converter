@@ -1,6 +1,6 @@
 {
   "name": "autotranslate",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -20,6 +20,9 @@
     "babylon": "^6.18.0",
     "commander": "^2.11.0",
     "glob": "^7.1.2",
-    "node-xlsx": "^0.11.0"
+    "jscodeshift": "^0.3.32",
+    "node-xlsx": "^0.11.0",
+    "recast": "^0.13.0",
+    "uuid": "^3.1.0"
   }
 }

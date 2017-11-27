@@ -4,6 +4,7 @@
 const fs = require('fs');
 const path = require('path');
 const xlsx = require('node-xlsx');
+const uuidv4 = require('uuid/v4');
 
 const config = require('../config');
 const utils = require('../util');
@@ -12,7 +13,7 @@ const utils = require('../util');
 
 /**
  * @param {Array} files
- * 生成文件内所有中文Map
+ * @return chnMap
  * chnMap example
  * {
  *  "recruit-fbi.components.Common.Record": ['请求纪录失败', '失败'],
@@ -26,7 +27,7 @@ function generateChnMap(files) {
     const key = `${config.prefix}.${file.split('/').slice(2, -1).join('.')}.`;
     const singleFileChn = utils.matchChnFromAST(ast);
     if (singleFileChn.length > 0) {
-      chnMap[key] = utils.matchChnFromAST(ast);
+      chnMap[key] = chnMap[key] ? chnMap[key].concat(singleFileChn) : singleFileChn;
     }
   })
   return chnMap;
@@ -43,7 +44,7 @@ function generateMCMSxlsx(chnMap) {
   let dyadicArr = [];
   for(let [key, value] of Object.entries(chnMap)) {
     value.forEach(n => {
-      dyadicArr.push([key, n]);
+      dyadicArr.push([`${key}${config.uuid ? uuidv4() : ''}`, n]);
     })
   }
   if (config.unique) {
@@ -63,7 +64,7 @@ function generateMCMSxlsx(chnMap) {
     fs.writeFileSync(`${process.cwd()}/${config.prefix}_autoTranslate_i18n.xlsx`, newBuffer);
     console.log('build success');
   }catch(e) {
-    throw new Error(`build faild ${e}`);
+    throw new Error(`build failed ${e}`);
   }
 }
 
