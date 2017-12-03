@@ -2,16 +2,14 @@
 
 const program = require('commander');
 const packageInfo = require('../package.json');
-const build = require('../src/cli/build');
-const replace = require('../src/cli/replace');
-const recovery = require('../src/cli/recovery');
+const build = require('../lib/build');
+const replace = require('../lib/replace');
 
 program
   .version(packageInfo.version)
   .usage('[option] <file ...>')
   .option('-b, --build', 'automatic build excel')
   .option('-r, --replace', 'automatic replace to i18nKey')
-  .option('-R, --recovery', 'recovery replace');
 
 program
   .command('build')
@@ -24,12 +22,6 @@ program
   .action(function(env, options) {
     replace();
   });
-
-program
-  .command('recovery')
-  .action(function(env, options) {
-    recovery();
-  })
   
 program.parse(process.argv);
 
@@ -39,8 +31,4 @@ if (program.build) {
 
 if (program.replace) {
   replace();
-}
-
-if (program.recovery) {
-  recovery();
 }
