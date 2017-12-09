@@ -40,7 +40,7 @@ the default config in the cli
 }
 ```
 
-you can also add a json file must named as `autoTranslate.config.json` in the root of your project, then you can cover the default config.
+you can also add a json file must named as `autoTranslate.config.json` in the root of your project, then you can cover the default config.
 
 ### `root`
 
@@ -66,7 +66,7 @@ default use Project Name as the front part of key
 
 `Boolean`
 
-if `true` automatic according defalut chinese translate to pinyin rule to generate the last part of key, otherwise `false` you can also custom unique the last part of key so that you can better manage your code.
+if `true` automatic according defalut chinese translate to pinyin rule to generate the last part of key, otherwise `false` you can also custom unique the last part of key so that you can better manage your code.
 
 
 
