@@ -1,6 +1,6 @@
 ## autoTranslate
 
-a tools for nowa Project i18n automatic
+a tools for nowa Project automatic replace hard code literal to i18n(key)
 
 ## Install
 
@@ -16,7 +16,7 @@ cd autoTranslate
 npm link
 ```
 
-then you can use command `autoTranslate` global.
+then you can use command `autoTranslate` in cli.
 
 ## Usage
 
@@ -27,6 +27,26 @@ there's few command for this tools.
 - `autoTranslate replace` replace i18n(key) to chinese words that needs to translate
 
 > the cli also support relative path after `build` or `replace` command.
+
+- `autoTranslate -h`
+
+  ```
+    Usage: autoTranslate [option] <file ...>
+
+
+    Options:
+
+      -V, --version  output the version number
+      -b, --build    automatic build excel
+      -r, --replace  automatic replace to i18nKey
+      -h, --help     output usage information
+
+
+    Commands:
+
+      build
+      replace
+  ```
 
 ## config
 
