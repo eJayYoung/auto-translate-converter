@@ -55,12 +55,14 @@ the default config in the cli
 {
   root: './src',
   ignore: ['app', 'i18n', 'images', 'lib', 'util'],
+  basename: ['js', 'jsx'],
+  options: {},
   prefix: process.cwd().split('/').pop(),
   autoKey: true,
 }
 ```
 
-you can also add a json file must named as `autoTranslate.config.json` in the root of your project, then you can cover the default config.
+you can also add a json file must named as `autoTranslate.config.js` in the root of your project, then you can cover the default config.
 
 ### `root`
 

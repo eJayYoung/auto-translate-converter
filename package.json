@@ -16,7 +16,6 @@
     "url": "https://github.com/eJayYoung/autoTranslate.git"
   },
   "dependencies": {
-    "ast-types": "^0.10.1",
     "babylon": "^6.18.0",
     "commander": "^2.11.0",
     "gauge": "^2.7.4",

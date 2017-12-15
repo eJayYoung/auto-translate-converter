@@ -8,8 +8,8 @@ const replace = require('../lib/replace');
 program
   .version(packageInfo.version)
   .usage('[option] <file ...>')
-  .option('-b, --build <file ...></file>', 'automatic build excel')
-  .option('-r, --replace <file ...></file>', 'automatic replace to i18nKey')
+  .option('-b, --build', 'automatic build excel')
+  .option('-r, --replace', 'automatic replace to i18nKey')
 
 program
   .command('build')
