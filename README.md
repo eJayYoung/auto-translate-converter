@@ -16,19 +16,19 @@ cd autoTranslate
 npm link
 ```
 
-then you can use command `autoTranslate` in cli.
+then you can use command `auto-translate` in cli.
 
 ## Usage
 
 there's few command for this tools.
 
-- `autoTranslate build` build excel file contain project chinese words
+- `auto-translate build` build excel file contain project chinese words
 
-- `autoTranslate replace` replace i18n(key) to chinese words that needs to translate
+- `auto-translate replace` replace i18n(key) to chinese words that needs to translate
 
 > the cli also support relative path after `build` or `replace` command.
 
-- `autoTranslate -h`
+- `auto-translate -h`
 
   ```
     Usage: autoTranslate [option] <file ...>
