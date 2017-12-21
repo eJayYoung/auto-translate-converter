@@ -15,6 +15,9 @@
     "type": "git",
     "url": "https://github.com/eJayYoung/autoTranslate.git"
   },
+  "publishConfig": {
+    "registry": "http://registry.npm.alibaba-inc.com"
+  },
   "dependencies": {
     "babylon": "^6.18.0",
     "commander": "^2.11.0",
