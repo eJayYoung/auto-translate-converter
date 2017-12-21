@@ -90,6 +90,11 @@ default use Project Name as the front part of key
 
 if `true` automatic according defalut chinese translate to pinyin rule to generate the last part of key, otherwise `false` you can also custom unique the last part of key so that you can better manage your code.
 
+### `customCall`
+
+`String`
+
+custom definition the replace callExpression.
 
 
 
