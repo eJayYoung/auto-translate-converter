@@ -21,13 +21,6 @@ then you can use command `auto-translate` in cli.
 ## Usage
 
 there's few command for this tools.
-
-- `auto-translate build` build excel file contain project chinese words
-
-- `auto-translate replace` replace i18n(key) to chinese words that needs to translate
-
-> the cli also support relative path after `build` or `replace` command.
-
 - `auto-translate -h`
 
   ```
@@ -48,10 +41,17 @@ there's few command for this tools.
       replace
   ```
 
-## config
+- `auto-translate build` <br>
+  build excel file contain project chinese words
+
+- `auto-translate replace` <br>
+  replace i18n(key) to chinese words that needs to translate
+> the cli also support relative path after `build` or `replace` command.
+
+## Config
 
 the default config in the cli
-```js
+```javascript
 {
   root: './src',
   ignore: ['app', 'i18n', 'images', 'lib', 'util'],
@@ -62,39 +62,14 @@ the default config in the cli
 }
 ```
 
-you can also add a json file must named as `autoTranslate.config.js` in the root of your project, then you can cover the default config.
-
-### `root`
-
-`String`
-
-the root file path in project for the cli
-
-### `ignore`
-
-`Array`
-
-the file path, both support catelog or relative path
-
-default ignore the nowa project catelog, such as `app`, `i18n`, `images`, `lib`, `util`
-
-### `prefix`
-
-`String`
-
-default use Project Name as the front part of key
-
-### `autoKey`
-
-`Boolean`
-
-if `true` automatic according defalut chinese translate to pinyin rule to generate the last part of key, otherwise `false` you can also custom unique the last part of key so that you can better manage your code.
-
-### `customCall`
-
-`String`
-
-custom definition the replace callExpression.
+you can also add a json file require named as `autoTranslate.config.js` in the root of your project, then you can cover the default config.
 
 
+| properity | type | default | description |
+| --------- | ---- | ------- | ----------- |
+| `root` | String | './src' | the root parse file path in project |
+| `ignore` | Array | `['app', 'i18n', 'images', 'lib', 'util']` | default ignore catelog, support relative path |
+| `prefix` | String | `process.cwd().split('/').pop()` | use your Project Name as default for the front part of key |
+| `autoKey` | Boolean | `true` | if `true` automatic according defalut chinese translate to pinyin rule to generate the last part of key, otherwise `false` you can also custom fill the last part of key keep unique in single file so that you can better manage your code. |
+| `customCall` | String | null | custom definition the replace callExpression. |
 
