@@ -21,7 +21,7 @@ then you can use command `auto-translate` in cli.
 ## Usage
 
 there's few command for this tools.
-- `auto-translate -h`
+### **`auto-translate -h`**
 
   ```
     Usage: autoTranslate [option] <file ...>
@@ -41,10 +41,10 @@ there's few command for this tools.
       replace
   ```
 
-- `auto-translate build` <br>
-  build excel file contain project chinese words
+### **`auto-translate build`** <br>
+  build excel file contain project chinese words, combine with the data in `zh-cn.js`. 
 
-- `auto-translate replace` <br>
+### **`auto-translate replace`** <br>
   replace i18n(key) to chinese words that needs to translate
 > the cli also support relative path after `build` or `replace` command.
 
@@ -65,7 +65,7 @@ the default config in the cli
 you can also add a json file require named as `autoTranslate.config.js` in the root of your project, then you can cover the default config.
 
 
-| properity | type | default | description |
+| property | type | default | description |
 | --------- | ---- | ------- | ----------- |
 | `root` | String | './src' | the root parse file path in project |
 | `ignore` | Array | `['app', 'i18n', 'images', 'lib', 'util']` | default ignore catelog, support relative path |
