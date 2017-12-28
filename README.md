@@ -69,6 +69,8 @@ you can also add a json file require named as `autoTranslate.config.js` in the r
 | --------- | ---- | ------- | ----------- |
 | `root` | String | './src' | the root parse file path in project |
 | `ignore` | Array | `['app', 'i18n', 'images', 'lib', 'util']` | default ignore catelog, support relative path |
+| `basename` | Array | `['js', 'jsx']` | default traverse file extension |
+| `options` | Object | `{}` | details from [recast.parse(ast, options)](https://github.com/benjamn/recast/blob/master/lib/options.js) |
 | `prefix` | String | `process.cwd().split('/').pop()` | use your Project Name as default for the front part of key |
 | `autoKey` | Boolean | `true` | if `true` automatic according defalut chinese translate to pinyin rule to generate the last part of key, otherwise `false` you can also custom fill the last part of key keep unique in single file so that you can better manage your code. |
 | `customCall` | String | null | custom definition the replace callExpression. |
