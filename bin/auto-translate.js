@@ -10,6 +10,7 @@ program
   .usage('[option] <file ...>')
   .option('-b, --build', 'automatic build excel')
   .option('-r, --replace', 'automatic replace to i18nKey')
+  
 program
   .command('build')
   .action(function(env, options) {
