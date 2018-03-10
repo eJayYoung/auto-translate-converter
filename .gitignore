@@ -16,7 +16,7 @@ results
 npm-debug.log
 node_modules
 .vscode
-
+dist
 # MacOSX specifics
 .DS_Store
 
