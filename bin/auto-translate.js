@@ -4,6 +4,7 @@ const program = require('commander');
 const pkg = require('../package.json');
 const build = require('../lib/build');
 const replace = require('../lib/replace');
+const combine = require('../lib/combine-excels');
 
 program
   .version(pkg.version)
@@ -21,6 +22,13 @@ program
   .command('replace')
   .action(function(env, options) {
     replace();
+  });
+
+program
+  .command('combine')
+  .action(function(env) {
+    const folder = process.cwd();
+    combine(folder);
   });
   
 program.parse(process.argv);
