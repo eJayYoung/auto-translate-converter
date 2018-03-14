@@ -44,7 +44,7 @@
 
 ### auto-translate build
 
-![undefined](https://private-alipayobjects.alipay.com/alipay-rmsdeploy-image/skylark/png/6a7eed3f-b0c1-489d-a62e-9890d0a74022.png) 
+![undefined](./img/build.img) 
 
 1.使用 `glob` 来遍历项目文件，`fs.readFileSync` 来读取文件代码
 
@@ -107,7 +107,7 @@ visitAST(ast, cb) {
 	> 不过在使用正则时要慎用全局模式，是由于全局模式的正则表达式有个属性 `lastIndex`， 用来表示上一次匹配文本之后的第一个字符的位置，若上次匹配的结果是由 `test()` 或 `exec()`找到的，它们都以 lastIndex 属性所指的位置作为下次检索的起始点。而我们在每次匹配时，只需要 `lastIndex` 都从0开始即可，所以可以不用全局模式，详情可见[理解正则表达式的全局匹配](http://bubkoo.com/2014/03/19/understanding-the-flag-g-of-JavaScript's-regular-expressions/)
 
 - 生成美杜莎key的策略
-![undefined](https://private-alipayobjects.alipay.com/alipay-rmsdeploy-image/skylark/png/e42f7b9c-5f9b-458d-b812-7e1f4d73bd30.png) 
+![undefined](./img/pinyin.png) 
 
 	在遍历获取中文字符串时，同时也可以获取到该字符串所有文件路径，将该路径用 `.` 连接，即为美杜莎key的前半部分，后半部分为该文案的拼音，但是有的文案属于一句话，全部提取会导致key太长。因此为了让后半部分的key唯一，采用如下策略:
 <br/>
@@ -132,11 +132,11 @@ visitAST(ast, cb) {
 
 4.将上面获取的文案和key拼成一个二维数组，生成xlsx
 解析美杜莎的xlsx模版，将内容替换成我们从项目中生成的二维数组，再生成我们想要的xlsx，就像这样：
-![undefined](https://private-alipayobjects.alipay.com/alipay-rmsdeploy-image/skylark/png/3fd3f6f5-7d30-405b-bc9a-a0ccf7c713ce.png) 
+![undefined](./img/xlsx.png) 
 
 ### auto-translate replace
 
-我们的国际化方案是使用[i18n-helper](http://web.npm.alibaba-inc.com/package/i18n-helper)，因此我们在项目使用自定义方法 `i18n(key)` 来获取美杜莎的文案。
+我们的国际化方案是使用[i18n-helper](http://npmjs.org/package/i18n-helper)，因此我们在项目使用自定义方法 `i18n(key)` 来获取美杜莎的文案。
 
 1.首先在每个目录下，我们需要判断页面中有没有引入或者定义了i18n，没有引入的文件需要引入
 
