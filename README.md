@@ -18,6 +18,8 @@ npm link
 
 then you can use command `auto-translate` in cli.
 
+## [Implement Docment](./Implement.md)
+
 ## Usage
 
 there's few command for this tools.
