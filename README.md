@@ -4,7 +4,7 @@ a tools for nowa Project automatic replace hard code literal to i18n(key)
 
 ## Install
 
-via npm(version>=6.0)
+via npm(node version>=6.0)
 ```
 npm install autotranslate -g
 ```
