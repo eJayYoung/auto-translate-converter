@@ -44,7 +44,7 @@
 
 ### auto-translate build
 
-![undefined](./img/build.img) 
+![undefined](./img/build.png) 
 
 1.使用 `glob` 来遍历项目文件，`fs.readFileSync` 来读取文件代码
 
