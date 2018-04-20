@@ -1,3 +1,17 @@
+<a name="0.1.14"></a>
+## [0.1.14](https://github.com/eJayYoung/autoTranslate/compare/v0.1.13...v0.1.14) (2018-04-20)
+
+
+### fix
+
+* mergePreI18n judge error ([2700ae483331cdcc92f17c667942d0b3acf20130](https://github.com/eJayYoung/autoTranslate/commit/2700ae483331cdcc92f17c667942d0b3acf20130))
+
+### update
+
+* CHANGELOG and README ([1d5b7e47cf9f7783b9a9f0e3985b592f12678279](https://github.com/eJayYoung/autoTranslate/commit/1d5b7e47cf9f7783b9a9f0e3985b592f12678279))
+
+
+
 <a name="0.1.13"></a>
 ## [0.1.13](https://github.com/eJayYoung/autoTranslate/compare/v0.1.12...v0.1.13) (2018-04-20)
 
@@ -6,14 +20,6 @@
 
 * update version ([3d72a201499a7067688832d6606411e8fda27466](https://github.com/eJayYoung/autoTranslate/commit/3d72a201499a7067688832d6606411e8fda27466))
 
-### feat
-* support all babylon plugin in babylon.parse
-
-### refactor
-* simplified command auto-translate to atc
-
-### docs
-* add demo.gif and update tools name
 
 
 <a name="0.1.12"></a>
