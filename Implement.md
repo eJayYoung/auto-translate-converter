@@ -100,14 +100,14 @@ visitAST(ast, cb) {
 
 
 - 根据这些字符串节点返回的值，来正则匹配是否为中文，[匹配中文的正则表达式](https://stackoverflow.com/questions/21109011/javascript-unicode-string-chinese-character-but-no-punctuation)已根据unicode block list整理出来了`/[\u4E00-\u9FCC\u3400-\u4DB5\uFA0E\uFA0F\uFA11\uFA13\uFA14\uFA1F\uFA21\uFA23\uFA24\uFA27-\uFA29]|[\ud840-\ud868][\udc00-\udfff]|\ud869[\udc00-\uded6\udf00-\udfff]|[\ud86a-\ud86c][\udc00-\udfff]|\ud86d[\udc00-\udf34\udf40-\udfff]|\ud86e[\udc00-\udc1d]/`
-<br/>
-	> 不过在使用正则时要慎用全局模式，是由于全局模式的正则表达式有个属性 `lastIndex`， 用来表示上一次匹配文本之后的第一个字符的位置，若上次匹配的结果是由 `test()` 或 `exec()`找到的，它们都以 lastIndex 属性所指的位置作为下次检索的起始点。而我们在每次匹配时，只需要 `lastIndex` 都从0开始即可，所以可以不用全局模式，详情可见[理解正则表达式的全局匹配](http://bubkoo.com/2014/03/19/understanding-the-flag-g-of-JavaScript's-regular-expressions/)
+
+> 不过在使用正则时要慎用全局模式，是由于全局模式的正则表达式有个属性 `lastIndex`， 用来表示上一次匹配文本之后的第一个字符的位置，若上次匹配的结果是由 `test()` 或 `exec()`找到的，它们都以 lastIndex 属性所指的位置作为下次检索的起始点。而我们在每次匹配时，只需要 `lastIndex` 都从0开始即可，所以可以不用全局模式，详情可见[理解正则表达式的全局匹配](http://bubkoo.com/2014/03/19/understanding-the-flag-g-of-JavaScript's-regular-expressions/)
 
 - 生成key的策略
 ![undefined](./img/pinyin.png) 
 
 	在遍历获取中文字符串时，同时也可以获取到该字符串所有文件路径，将该路径用 `.` 连接，即为key的前半部分，后半部分为该文案的拼音，但是有的文案属于一句话，全部提取会导致key太长。因此为了让后半部分的key唯一，采用如下策略:
-<br/>
+
 	- 默认取字符串前两个字的拼音用 `_` 连接
 	- 将一个文件中所有的字符串按照字符数升序排列
 	- 若发现该文件中某个词的前两个字在已转的拼音中有重复的
