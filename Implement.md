@@ -3,28 +3,28 @@
 
 ## 背景
 
-由于历史原因，很多老项目都是中文硬编码的，所以改造的大部分工作就是需要将这些 **中文文案** 替换成 `i18n(key)`。在此之前，都是人力完成这些重复的工作，不仅低效，开发人员的积极性也不高，因此自动化方案成为了我们后续项目国际化改造的不二之选。
+由于历史原因，很多老项目都是中文硬编码的，所以改造的大部分工作就是需要将这些 **中文文案** 替换成 `i18n(key)`。在此之前，都是人力完成这些重复的工作，不仅低效，开发人员的积极性也不高，因此自动化方案成为后续项目国际化改造的不二之选。
 
-**autoTransalte** 是这次自动化方案实践的产物，主要用来批量替换代码中的中文为 `i18n(key)`。不过还有很多待优化完善的地方，仅供参考。
+**auto-translate-converter** 是这次自动化方案实践的产物，主要用来批量替换代码中的中文为 `i18n(key)`。不过还有很多待优化完善的地方，仅供参考。
 
 ## 需求分析
 
-我将国际化改造的自动方案分为三个步骤：
+目前国际化改造的自动方案分为三个步骤：
 
 1. 提取出项目代码中所有的中文，生成对应的美杜莎key，最终生成xlsx（**自动**）
-2. 将xlsx交给业务方完成翻译文案，上传到美杜莎（**手动**）
+2. 将xlsx交给业务方完成翻译文案（**手动**）
 3. 根据最后修改的xlsx，把代码中的中文替换成我们想要的i18n(key)（**自动**）
 
 其中做的好处有：
 
 - 将文案的翻译自由交给业务方，使翻译内容更贴合业务场景
-- 将文案的美杜莎key的修改自由交给前端同学，更方便管理语义化的变量名
+- 将文案的key的修改自由交给前端同学，更方便管理语义化的变量名
 - 把有迹可循的重复工作交给机器
 
-因此我们的工具 `autoTranslate` 只需要两条命令
+因此我们的工具 `auto-translate-converter` 只需要两条命令
 
-- `auto-translate build` 对应第一步骤
-- `auto-translate replace` 对应第三步骤
+- `atc build` 对应第一步骤
+- `atc replace` 对应第三步骤
 
 ## 准备工作
 
@@ -42,7 +42,7 @@
 
 ## 实现思路
 
-### auto-translate build
+### atc build
 
 ![undefined](./img/build.png) 
 
@@ -60,10 +60,7 @@ const recast = require('recast');
 const  parseOptions = {
 	parser: {
 		parse: (source) => {
-			return babylon.parse(source, {
-				allowImportExportEverywhere: true,
-          		plugins: ['jsx', 'objectRestSpread', 'decorators', 'exportExtensions', >'classProperties']
-			})
+			return babylon.parse(source, config.parseOpts)
 		}
 	}
 };
@@ -99,17 +96,17 @@ visitAST(ast, cb) {
 }
 ```
 
-3.根据正则表达式匹配出中文的节点,并生成该文案在美杜莎的唯一key。
+3.根据正则表达式匹配出中文的节点,并生成该文案的唯一key。
 
 
 - 根据这些字符串节点返回的值，来正则匹配是否为中文，[匹配中文的正则表达式](https://stackoverflow.com/questions/21109011/javascript-unicode-string-chinese-character-but-no-punctuation)已根据unicode block list整理出来了`/[\u4E00-\u9FCC\u3400-\u4DB5\uFA0E\uFA0F\uFA11\uFA13\uFA14\uFA1F\uFA21\uFA23\uFA24\uFA27-\uFA29]|[\ud840-\ud868][\udc00-\udfff]|\ud869[\udc00-\uded6\udf00-\udfff]|[\ud86a-\ud86c][\udc00-\udfff]|\ud86d[\udc00-\udf34\udf40-\udfff]|\ud86e[\udc00-\udc1d]/`
 <br/>
 	> 不过在使用正则时要慎用全局模式，是由于全局模式的正则表达式有个属性 `lastIndex`， 用来表示上一次匹配文本之后的第一个字符的位置，若上次匹配的结果是由 `test()` 或 `exec()`找到的，它们都以 lastIndex 属性所指的位置作为下次检索的起始点。而我们在每次匹配时，只需要 `lastIndex` 都从0开始即可，所以可以不用全局模式，详情可见[理解正则表达式的全局匹配](http://bubkoo.com/2014/03/19/understanding-the-flag-g-of-JavaScript's-regular-expressions/)
 
-- 生成美杜莎key的策略
+- 生成key的策略
 ![undefined](./img/pinyin.png) 
 
-	在遍历获取中文字符串时，同时也可以获取到该字符串所有文件路径，将该路径用 `.` 连接，即为美杜莎key的前半部分，后半部分为该文案的拼音，但是有的文案属于一句话，全部提取会导致key太长。因此为了让后半部分的key唯一，采用如下策略:
+	在遍历获取中文字符串时，同时也可以获取到该字符串所有文件路径，将该路径用 `.` 连接，即为key的前半部分，后半部分为该文案的拼音，但是有的文案属于一句话，全部提取会导致key太长。因此为了让后半部分的key唯一，采用如下策略:
 <br/>
 	- 默认取字符串前两个字的拼音用 `_` 连接
 	- 将一个文件中所有的字符串按照字符数升序排列
@@ -128,13 +125,13 @@ visitAST(ast, cb) {
 	autoTranslate-test.pages.demo.ce_shi_shu_ju	测试数据
   	```
 	
-	> 当然，如果不怕麻烦的话，也可以交给前端同学自定义key的后半部分，后续在autoTranslate的配置文件中会讲到
+	> 当然，如果不怕麻烦的话，也可以交给前端同学自定义key的后半部分，后续在auto-translate-conveter的配置文件中会讲到
 
 4.将上面获取的文案和key拼成一个二维数组，生成xlsx
 解析美杜莎的xlsx模版，将内容替换成我们从项目中生成的二维数组，再生成我们想要的xlsx，就像这样：
 ![undefined](./img/xlsx.png) 
 
-### auto-translate replace
+### atc replace
 
 我们的国际化方案是使用[i18n-helper](http://npmjs.org/package/i18n-helper)，因此我们在项目使用自定义方法 `i18n(key)` 来获取美杜莎的文案。
 
@@ -203,7 +200,7 @@ visitAST(ast, (path, value) => {
 
 ## 工具使用技巧
 
-由于本次方案的工具 `autoTranslate` 是面向前端同学使用，那自然需要具备易上手，灵活配置的特性。
+由于本次方案的工具 `auto-translate-converter` 是面向前端同学使用，那自然需要具备易上手，灵活配置的特性。
 
 - 安装
 ```javascript
@@ -214,26 +211,26 @@ npm install autotranslate -g
 - 命令行的使用
 
 ```javascript
-// 以auto-translate build为例，replace同理
+// 以atc build为例，replace同理
 
-auto-translate build 					// 默认在根目录执行
-auto-translate -b    					// 支持命令简写
-auto-translate -b src/page/demo		// 支持指定执行目录
+atc build 					// 默认在根目录执行
+atc build src/page/demo		// 支持指定执行目录
 
 ```
 
 - 配置文件
 
-开发者可以在项目根目录下添加一个文件`autoTranslate.config.js`进行配置, 输出内容如下：
+开发者可以在项目根目录下添加一个文件`atc.config.js`进行配置, 输出内容如下：
 
 ```javascript
 {
 	root: './src',  // 项目遍历的根目录
 	ignore: ['app', 'i18n', 'images', 'lib', 'util'], // 想忽略的文件目录
 	basename: ['js', 'jsx'], // 想遍历的文件类型
-	options: {}, // recast.parse的一些配置，详情见https://github.com/benjamn/recast/blob/master/lib/options.js
-	prefix: process.cwd().split('/').pop(), // 美杜莎key的前半部分的前缀，默认使用项目目录名
-	autoKey: true, // 是否自动生成美杜莎key，false的话只会生成前半部分的路径key，后面可以自己在xlsx添加
+	parseOpts: {}, // 自定义 babylon.parse(code, [options])，详情见https://github.com/benjamn/recast/blob/master/lib/options.js
+	printOpts: {}, // 自定义recast.print(code, [options], 详情见 https://github.com/benjamn/recast/blob/master/lib/options.js)
+	prefix: process.cwd().split('/').pop(), // key的前半部分的前缀，默认使用项目目录名
+	autoKey: true, // 是否自动生成完整key，false的话只会生成前半部分的路径key，后面可以自己在xlsx添加
 }
 ```
 > 用户自定义的配置项将会直接覆盖初始默认项,使用的Object.assign
@@ -243,7 +240,7 @@ auto-translate -b src/page/demo		// 支持指定执行目录
 ## 写在最后
 
 这次写工具的经历，不仅仅是在技术方面的广度有所提升，还让我从产品的视角去分析考虑，不光只埋头于代码实现，也要关注流程优化，用户体验。
-目前 `autoTranslate` 的默认配置只针对基于 `nowa` 的项目使用，当然还有一些配置也有待更新，比如自定义i18n方法。
+目前 `auto-translate-converter` 的默认配置只针对基于 `nowa` 的项目使用，当然还有一些配置也有待更新，比如自定义i18n方法。
 如果您有比较好的建议和想法，欢迎提issue或者PR。
 
 

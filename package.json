@@ -4,10 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "changelog": "conventional-changelog -p eslint -i CHANGELOG.md -s -r 0"
   },
   "bin": {
-    "auto-translate": "./bin/auto-translate.js"
+    "atc": "./bin/atc.js"
   },
   "author": "eJay",
   "license": "MIT",
