@@ -25,7 +25,7 @@ a cli work for part of i18n project chain
 
 there's few command for this tools.
 
-`atc` is a shortcut for **auto-translate-conveter**
+`atc` is a shortcut for **auto-translate-conveter**
 
 ### **`atc -h`**
 
