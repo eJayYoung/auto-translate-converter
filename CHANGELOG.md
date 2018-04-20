@@ -1,3 +1,21 @@
+<a name="0.1.13"></a>
+## [0.1.13](https://github.com/eJayYoung/autoTranslate/compare/v0.1.12...v0.1.13) (2018-04-20)
+
+
+### chore
+
+* update version ([3d72a201499a7067688832d6606411e8fda27466](https://github.com/eJayYoung/autoTranslate/commit/3d72a201499a7067688832d6606411e8fda27466))
+
+### feat
+* support all babylon plugin in babylon.parse
+
+### refactor
+* simplified command auto-translate to atc
+
+### docs
+* add demo.gif and update tools name
+
+
 <a name="0.1.12"></a>
 ## [0.1.12](https://github.com/eJayYoung/autoTranslate/compare/v0.1.11...v0.1.12) (2018-03-18)
 

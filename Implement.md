@@ -1,4 +1,4 @@
-# AutoTranslate - 5分钟搞定老项目文案国际化
+# auto-translate-converter - 5分钟搞定老项目文案国际化
 
 
 ## 背景

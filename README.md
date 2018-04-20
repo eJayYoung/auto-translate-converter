@@ -53,6 +53,7 @@ there's few command for this tools.
   replace i18n(key) to chinese words that needs to translate
 
 > the cli also support relative path after `build` or `replace` command.
+> eg. `atc build src/pages/home/Home.jsx`
 
 ## Config
 
